@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แผนกลยุทธ์เพิ่ม ROAS - Marketing Strategy Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sarabun', sans-serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) { .chart-container { height: 400px; } }
+        .card-hover { transition: transform 0.2s; }
+        .card-hover:hover { transform: translateY(-5px); }
+    </style>
+    <!-- 
+        Palette Selected: Vibrant Professional (Blue/Orange/Teal)
+        Primary: #1E3A8A (Deep Blue)
+        Secondary: #F59E0B (Vibrant Orange)
+        Accent: #10B981 (Emerald Green)
+        Background: #F3F4F6 (Cool Gray)
+        
+        Source Analysis Plan:
+        1. Hook/Overview: Show the painful current state (ROAS 1.15, AOV 99).
+        2. Diagnosis: Visualize why it's failing (Budget skew).
+        3. Solution: The 3-Step Core Strategy.
+        4. Action: The new budget allocation (Before vs After).
+        5. Projection: Expected results (ROAS 2.5+).
+        
+        Chart Choices & Justifications (NO SVG / NO MERMAID):
+        1. KPI Cards: HTML/CSS. Goal: Inform immediate pain points.
+        2. Donut Chart (Current Budget): Chart.js. Goal: Compare parts to whole. Shows over-reliance on Shopee Ads.
+        3. Grouped Bar Chart (Budget Shift): Chart.js. Goal: Compare changes. Visualizes the "Re-allocation".
+        4. Horizontal Bar (ROAS Targets): Chart.js. Goal: Compare benchmarks.
+    -->
+</head>
+<body class="bg-gray-100 text-slate-800">
+
+    <!-- Navigation / Header -->
+    <header class="bg-blue-900 text-white p-6 shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div>
+                <h1 class="text-3xl font-bold">🚀 แผนกู้วิกฤต ROAS</h1>
+                <p class="text-blue-200 text-sm mt-1">เป้าหมาย: เพิ่ม ROAS จาก 1.15 เป็น 3.0 ด้วยงบ 120,000 บาท</p>
+            </div>
+            <div class="mt-4 md:mt-0 bg-orange-500 px-4 py-2 rounded-full font-bold shadow-md animate-pulse">
+                Current Status: Critical
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto p-4 space-y-8">
+
+        <!-- SECTION 1: The Current Problem (Diagnosis) -->
+        <section class="animate-fade-in-up">
+            <div class="bg-white rounded-xl shadow-md p-6 border-l-8 border-red-500">
+                <h2 class="text-2xl font-bold text-gray-800 mb-2">🛑 สถานการณ์ปัจจุบัน (Current Situation)</h2>
+                <p class="text-gray-600 mb-6">
+                    ขณะนี้ระบบโฆษณากำลัง "เผาเงิน" โดยไม่เกิดกำไรที่แท้จริง ปัญหาคอขวดอยู่ที่ AOV ต่ำเกินไป และการพึ่งพา Shopee Ads ในการหาลูกค้าใหม่ 100%
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <!-- KPI 1 -->
+                    <div class="bg-red-50 rounded-lg p-6 text-center card-hover shadow-sm border border-red-100">
+                        <div class="text-4xl font-extrabold text-red-600 mb-2">1.15</div>
+                        <div class="text-gray-500 font-semibold">Current ROAS</div>
+                        <div class="text-xs text-red-400 mt-1">🛑 กำไรน้อยมาก</div>
+                    </div>
+                    <!-- KPI 2 -->
+                    <div class="bg-orange-50 rounded-lg p-6 text-center card-hover shadow-sm border border-orange-100">
+                        <div class="text-4xl font-extrabold text-orange-600 mb-2">99฿</div>
+                        <div class="text-gray-500 font-semibold">AOV (Shopee)</div>
+                        <div class="text-xs text-orange-400 mt-1">📉 ต่ำกว่าจุดคุ้มทุน</div>
+                    </div>
+                    <!-- KPI 3 -->
+                    <div class="bg-blue-50 rounded-lg p-6 text-center card-hover shadow-sm border border-blue-100">
+                        <div class="text-4xl font-extrabold text-blue-600 mb-2">5.15%</div>
+                        <div class="text-gray-500 font-semibold">Conversion Rate</div>
+                        <div class="text-xs text-blue-400 mt-1">✅ จุดแข็งเดียวที่มี</div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-700 mb-3">💸 โครงสร้างงบประมาณเดิม (The Trap)</h3>
+                        <p class="text-sm text-gray-600 mb-4">
+                            งบ 50% ลงไปที่ Shopee Ads เพื่อหาลูกค้าใหม่ ซึ่งเป็นการใช้เครื่องมือผิดประเภท ทำให้ CPC แพงและยอดขายตัน
+                        </p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-center"><span class="text-red-500 mr-2">❌</span> ยอดขาย 100% มาจาก Ads (ไม่มี Organic)</li>
+                            <li class="flex items-center"><span class="text-red-500 mr-2">❌</span> ขาด Traffic คุณภาพจากภายนอก</li>
+                        </ul>
+                    </div>
+                    <!-- Chart 1: Current Budget Breakdown -->
+                    <div class="bg-gray-50 rounded-lg p-4">
+                        <div class="chart-container">
+                            <canvas id="currentBudgetChart"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-gray-400 mt-2">แผนภูมิแสดงสัดส่วนงบประมาณปัจจุบัน</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: The Core Strategy -->
+        <section>
+            <div class="bg-gradient-to-r from-blue-900 to-blue-700 rounded-xl shadow-lg p-8 text-white">
+                <h2 class="text-2xl font-bold mb-6 text-center">✅ 3 กลยุทธ์แก้วิกฤต (The Core Solution)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Strategy 1 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:bg-white/20 transition duration-300">
+                        <div class="text-4xl mb-4">📦</div>
+                        <h3 class="text-xl font-bold mb-2">1. ดัน AOV ขึ้น 2 เท่า</h3>
+                        <p class="text-blue-100 text-sm">
+                            จาก 99฿ ➔ 200฿+<br>
+                            ใช้เทคนิค Bundle, ขาย Set 6 ซอง (369฿) เป็น Default แทนการขายปลีก
+                        </p>
+                    </div>
+                    <!-- Strategy 2 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:bg-white/20 transition duration-300">
+                        <div class="text-4xl mb-4">📉</div>
+                        <h3 class="text-xl font-bold mb-2">2. ลดงบ Shopee Ads</h3>
+                        <p class="text-blue-100 text-sm">
+                            เลิกใช้ Shopee Ads หา Traffic ใหม่ เปลี่ยนไปใช้เพื่อ "ปิดการขาย" คนที่พร้อมซื้อเท่านั้น
+                        </p>
+                    </div>
+                    <!-- Strategy 3 -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:bg-white/20 transition duration-300">
+                        <div class="text-4xl mb-4">📢</div>
+                        <h3 class="text-xl font-bold mb-2">3. เร่ง Traffic ภายนอก</h3>
+                        <p class="text-blue-100 text-sm">
+                            ใช้ Facebook & TikTok หา Traffic เข้า Shopee ด้วย UTM Campaign เพื่อวัดผลแม่นยำ
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: The New Allocation (Action Plan) -->
+        <section>
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">💰 แผนจัดสรรงบใหม่ (Budget Re-allocation)</h2>
+                <p class="text-gray-600 mb-6">
+                    การปรับเปลี่ยนงบประมาณ 120,000 บาท เพื่อให้เม็ดเงินทำงานถูกที่ถูกเวลา (Right Budget, Right Channel)
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Text Explanation -->
+                    <div class="lg:col-span-1 space-y-4">
+                        <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-800">FB Traffic (+15k)</h4>
+                            <p class="text-sm text-blue-700">ยิงเข้า Set 199/369 เน้น Conversion to Shopee</p>
+                        </div>
+                        <div class="bg-teal-50 p-4 rounded-lg border-l-4 border-teal-500">
+                            <h4 class="font-bold text-teal-800">TikTok Ads (+5k)</h4>
+                            <p class="text-sm text-teal-700">ใช้ประโยชน์จาก CPC ที่ถูก และ CR ที่สูงกว่า</p>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-lg border-l-4 border-orange-500">
+                            <h4 class="font-bold text-orange-800">Shopee Ads (-20k)</h4>
+                            <p class="text-sm text-orange-700">ลดงบส่วนเกินที่ทำให้ ROAS ตัน เน้นเฉพาะ Keyword High Intent</p>
+                        </div>
+                    </div>
+
+                    <!-- Chart 2: Budget Comparison -->
+                    <div class="lg:col-span-2">
+                        <div class="chart-container">
+                            <canvas id="budgetComparisonChart"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-gray-400 mt-2">เปรียบเทียบการเปลี่ยนแปลงงบประมาณรายช่องทาง (บาท)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Expected Outcomes -->
+        <section class="mb-12">
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">🚀 ผลลัพธ์ที่คาดการณ์ (Projected Impact)</h2>
+                <p class="text-gray-600 mb-6">
+                    เมื่อ AOV เพิ่มขึ้น และ Cost Per Click ลดลงจาก Traffic ภายนอก นี่คือภาพความสำเร็จใหม่
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Chart 3: ROAS Projection -->
+                    <div class="bg-gray-50 rounded-lg p-4">
+                         <div class="chart-container">
+                            <canvas id="roasProjectionChart"></canvas>
+                        </div>
+                         <p class="text-center text-xs text-gray-400 mt-2">ROAS ที่คาดหวังในแต่ละช่องทาง</p>
+                    </div>
+
+                    <!-- Summary Metrics Table -->
+                    <div class="flex flex-col justify-center">
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full text-sm text-left text-gray-600">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 rounded-l-lg">ตัวชี้วัด (Metric)</th>
+                                        <th scope="col" class="px-6 py-3">เดิม</th>
+                                        <th scope="col" class="px-6 py-3 rounded-r-lg text-blue-600">ใหม่ (Target)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b hover:bg-gray-50">
+                                        <td class="px-6 py-4 font-medium text-gray-900">AOV (ยอดต่อบิล)</td>
+                                        <td class="px-6 py-4">99 ฿</td>
+                                        <td class="px-6 py-4 font-bold text-blue-600">150 - 180 ฿</td>
+                                    </tr>
+                                    <tr class="bg-white border-b hover:bg-gray-50">
+                                        <td class="px-6 py-4 font-medium text-gray-900">Traffic (Shopee)</td>
+                                        <td class="px-6 py-4">Low</td>
+                                        <td class="px-6 py-4 font-bold text-blue-600">35,000+ คน</td>
+                                    </tr>
+                                    <tr class="bg-white border-b hover:bg-gray-50">
+                                        <td class="px-6 py-4 font-medium text-gray-900">Shopee Ads ROAS</td>
+                                        <td class="px-6 py-4 text-red-500">1.15</td>
+                                        <td class="px-6 py-4 font-bold text-green-600">2.0 - 2.2</td>
+                                    </tr>
+                                    <tr class="bg-white rounded-b-lg">
+                                        <td class="px-6 py-4 font-medium text-gray-900">Total System ROAS</td>
+                                        <td class="px-6 py-4 text-red-500">1.15</td>
+                                        <td class="px-6 py-4 font-bold text-green-600">2.5 - 3.0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="mt-4 p-4 bg-green-50 rounded-lg border border-green-200">
+                            <h5 class="font-bold text-green-800">💡 Winning Formula</h5>
+                            <p class="text-green-700 text-sm">
+                                "Traffic ราคาถูกจาก FB/TT" + "AOV สูงใน Shopee" + "Shopee Ads ปิดการขาย" = <strong>High Profit</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-800 text-white p-8 text-center mt-8">
+        <p class="text-gray-400">Strategy Optimization Plan</p>
+        <p class="mt-2 text-sm">Designed for high-performance marketing teams.</p>
+    </footer>
+
+    <!-- JavaScript for Charts -->
+    <script>
+        // --- UTILITY: Label Wrapping Function (Required by prompt) ---
+        function splitLabel(label) {
+            if (typeof label !== 'string') return label;
+            if (label.length <= 16) return label;
+            
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + 1 + words[i].length <= 16) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- COMMON CONFIG: Tooltips & Fonts ---
+        Chart.defaults.font.family = "'Sarabun', sans-serif";
+        Chart.defaults.color = '#4B5563';
+        
+        const commonTooltip = {
+            callbacks: {
+                title: function(tooltipItems) {
+                    const item = tooltipItems[0];
+                    let label = item.chart.data.labels[item.dataIndex];
+                    if (Array.isArray(label)) {
+                        return label.join(' ');
+                    } else {
+                        return label;
+                    }
+                }
+            }
+        };
+
+        // --- CHART 1: Current Budget Breakdown (Doughnut) ---
+        // Goal: Inform/Compare (Show skewed budget)
+        const ctx1 = document.getElementById('currentBudgetChart').getContext('2d');
+        const budgetLabels = ['Shopee Ads (Current)', 'TikTok Ads', 'TikTok GMV Max', 'FB Traffic', 'FB Brand'];
+        
+        new Chart(ctx1, {
+            type: 'doughnut',
+            data: {
+                labels: budgetLabels.map(splitLabel),
+                datasets: [{
+                    label: 'งบประมาณเดิม (บาท)',
+                    data: [60000, 25000, 20000, 10000, 5000],
+                    backgroundColor: [
+                        '#EF4444', // Red for Shopee (Problem)
+                        '#3B82F6', // Blue
+                        '#60A5FA', // Light Blue
+                        '#10B981', // Green
+                        '#D1D5DB'  // Gray
+                    ],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: commonTooltip,
+                    title: {
+                        display: true,
+                        text: 'งบประมาณเดิม 120,000 บาท'
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+
+        // --- CHART 2: Budget Comparison (Grouped Bar) ---
+        // Goal: Compare (Show the shift in strategy)
+        const ctx2 = document.getElementById('budgetComparisonChart').getContext('2d');
+        const channelLabels = ['FB Traffic', 'TikTok Ads', 'Shopee Ads', 'TikTok GMV', 'Brand Awareness'];
+        
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: channelLabels.map(splitLabel),
+                datasets: [
+                    {
+                        label: 'แผนเดิม (Old)',
+                        data: [10000, 25000, 60000, 20000, 5000],
+                        backgroundColor: '#9CA3AF',
+                        borderRadius: 4
+                    },
+                    {
+                        label: 'แผนใหม่ (New)',
+                        data: [25000, 30000, 40000, 15000, 5000],
+                        backgroundColor: [
+                            '#1E3A8A', // FB (Blue)
+                            '#000000', // TT (Black-ish/Dark) -> Using Dark Blue for consistency palette
+                            '#F59E0B', // Shopee (Orange)
+                            '#0EA5E9', // TT GMV
+                            '#6B7280'  // Brand
+                        ],
+                        // Overriding colors for specific logic:
+                        backgroundColor: function(context) {
+                             const index = context.dataIndex;
+                             const newValues = [25000, 30000, 40000, 15000, 5000];
+                             // Highlight: FB(Blue), TT(Teal), Shopee(Orange)
+                             if(index === 0) return '#2563EB'; // FB
+                             if(index === 1) return '#0D9488'; // TT
+                             if(index === 2) return '#F59E0B'; // Shopee
+                             return '#94A3B8';
+                        },
+                        borderRadius: 4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'งบประมาณ (บาท)' }
+                    }
+                },
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'top' }
+                }
+            }
+        });
+
+        // --- CHART 3: ROAS Projection (Bar/Line) ---
+        // Goal: Inform Future Success
+        const ctx3 = document.getElementById('roasProjectionChart').getContext('2d');
+        const roasLabels = ['Shopee Ads', 'TikTok to Shopee', 'FB to Shopee', 'System Total'];
+
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: roasLabels.map(splitLabel),
+                datasets: [
+                    {
+                        label: 'Current ROAS',
+                        data: [1.15, 0, 0, 1.15],
+                        backgroundColor: '#FCA5A5', // Light Red
+                        borderWidth: 1,
+                        borderColor: '#EF4444'
+                    },
+                    {
+                        label: 'Target ROAS (Max)',
+                        data: [2.2, 2.3, 2.4, 3.0],
+                        backgroundColor: '#34D399', // Light Green
+                        borderWidth: 1,
+                        borderColor: '#059669'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: 'ROAS' }
+                    }
+                },
+                plugins: {
+                    tooltip: commonTooltip,
+                    legend: { position: 'top' }
+                }
+            }
+        });
+
+    </script>
+    <!-- 
+        Explicit Confirmation:
+        - NO SVG used.
+        - NO Mermaid JS used.
+        - All icons are standard Unicode or CSS shapes.
+        - Chart.js labels are wrapped using 'splitLabel' function.
+        - Chart.js tooltips include required title callback.
+    -->
+</body>
+</html>
